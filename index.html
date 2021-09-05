@@ -5,6 +5,7 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <div class="real">Hello! Welcome to Rock-Paper-Scissors V2</div>
         <div class = "btn">
         <button id = "0">Rock</button>
         <button id = "1">Paper</button>
@@ -12,21 +13,25 @@
         </div>
         
         <script>
+            let yourScore = 0,compScore = 0;
             const body = document.querySelector('body');
+            const real = document.querySelector('.real')
             const score = document.createElement('div');
             score.classList.add('score');
             body.appendChild(score);
             function playerInput(e)
             {   
-                //if(!btn) return;
+                
                 //console.log( e.target);
                 let playerin = parseInt(e.target.id);
+                if(playerin == 0 ||  playerin == 1 || playerin == 2){
                 let y = computerPlay();
                 playRound(playerin,y);
                 //console.log(playerIn);;
+                }
             }
             
-            const btn = document.querySelector('button');
+            
             window.addEventListener('click',playerInput);
 
             
@@ -39,26 +44,24 @@
                 let compOutcome = Math.floor(Math.random() * Math.floor(3));
                 return compOutcome;
             }
-            function playerPlay()
-            {
-                //let play = prompt("What is your choice");
-                //return play.toLowerCase();
-            }
             function playRound(playerSelect,compSelect)
-            {
+            {   
+                
                 if(playerSelect == compSelect){
-                    score.textContent = 'Tie';
-                    console.log('tie');
+                    score.textContent = 'Tie!';
+                    //console.log('tie');
                 }
                 else if (playerSelect == compSelect + 1){
-                    score.textContent = outcomes[playerSelect] + " beats " + outcomes[compSelect];
-                    console.log('win');
+                    score.textContent = outcomes[playerSelect] + " beats " + outcomes[compSelect] + ". You Win!";
+                    yourScore++;
+                    
                 }
                 else
                 {
-                    score.textContent = outcomes[compSelect] + " beats " + outcomes[playerSelect];
-                    console.log('loss');
+                    score.textContent = outcomes[compSelect] + " beats " + outcomes[playerSelect] + ". You Lose!";
+                    compScore++;
                 }
+                real.textContent = "Your Score: " + yourScore + " Comp Score: " + compScore;
 
             }
 

@@ -1,17 +1,26 @@
 body,html {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: monospace;
     
 }
 .btn {
     display: flex;
     flex: 1;
-    min-height: 30vh;
+    min-height: 60vh;
     align-items: center;
     justify-content: center;
   }
-
+  button:hover {
+    
+    border-color: cyan;
+    box-shadow: 0 0 1rem cyan;
+  }
+  button:active {
+    
+    box-shadow: 0 5px rgb(0, 174, 255);
+    transform: translateY(4px);
+  }
   button {
     border: .2rem solid black;
     border-radius: .5rem;
@@ -21,8 +30,12 @@ body,html {
     transition: all .07s ease;
     width: 10rem;
     text-align: center;
-    color: white;
-    background: rgba(0,0,0,0.4);
-    text-shadow: 0 0 .5rem black;
+    font-family: monospace;
+    
+  }
+  div{
+    text-align: center;
+    font-size: 1.5rem;
+    padding-top: 2em;
   }
   
