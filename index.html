@@ -2,67 +2,72 @@
 <html>
     <head>
         <title>RockPaperScissors</title>
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <div class = "btn">
+        <button id = "0">Rock</button>
+        <button id = "1">Paper</button>
+        <button id = "2">Scissors</button>
+        </div>
+        
         <script>
+            const body = document.querySelector('body');
+            const score = document.createElement('div');
+            score.classList.add('score');
+            body.appendChild(score);
+            function playerInput(e)
+            {   
+                //if(!btn) return;
+                //console.log( e.target);
+                let playerin = parseInt(e.target.id);
+                let y = computerPlay();
+                playRound(playerin,y);
+                //console.log(playerIn);;
+            }
             
-            let outcomes = ["rock","paper","scissors"];
-            let score = 0;
+            const btn = document.querySelector('button');
+            window.addEventListener('click',playerInput);
+
+            
+            
+            let outcomes = ["Rock","Paper","Scissors"];
+            //let score = 0;
+            
             function computerPlay()
             {
                 let compOutcome = Math.floor(Math.random() * Math.floor(3));
-                return outcomes[compOutcome]
+                return compOutcome;
             }
             function playerPlay()
             {
-                let play = prompt("What is your choice");
-                return play.toLowerCase();
+                //let play = prompt("What is your choice");
+                //return play.toLowerCase();
             }
             function playRound(playerSelect,compSelect)
             {
-                if (playerSelect == "rock" && compSelect =="scissors")
-                {
-                    console.log("You Win! " + playerSelect + " beats " + compSelect);
-                    score+=1;
+                if(playerSelect == compSelect){
+                    score.textContent = 'Tie';
+                    console.log('tie');
                 }
-                else if (playerSelect == "paper" && compSelect =="rock")
-                {
-                    console.log("You Win! " + playerSelect + " beats " + compSelect);
-                    score+=1;
-                }
-                else if (playerSelect == "scissors" && compSelect =="paper")
-                {
-                    console.log("You Win! " + playerSelect + " beats " + compSelect);
-                    score+=1;
-                }
-                else if (playerSelect == compSelect)
-                {
-                    console.log("Tie!");
-                    
+                else if (playerSelect == compSelect + 1){
+                    score.textContent = outcomes[playerSelect] + " beats " + outcomes[compSelect];
+                    console.log('win');
                 }
                 else
                 {
-                    console.log("You Lose! " + compSelect + " beats " + playerSelect);
-                    compScore=0;
-                    compScore++;
+                    score.textContent = outcomes[compSelect] + " beats " + outcomes[playerSelect];
+                    console.log('loss');
                 }
+
             }
-            function game()
-            {
-                for(let i = 0; i < 5; i++)
-                {
-                    let x = playerPlay();
-                    let y = computerPlay();
-                    //console.log(x +' and '+y + compOutcome)
-                    playRound(x,y);
+
+               
+                
                     
-                }
-            console.log("Score " + score + " is to " + (compScore))
-            }
-            
-            game();  
-            
-            
+                    
+                   
+        
             
         </script>
     </body>
